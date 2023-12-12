@@ -1,24 +1,38 @@
 package com.skypro.Collections.domain;
 
+import java.util.Objects;
+
 public class Employee {
 
-    private String fullName;
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getSecondName() {
+        return secondName;
+    }
+
     private String firstName;
     private String secondName;
 
 
     public Employee(String firstName, String secondName) {
-        this.fullName = firstName + secondName;
+        this.firstName = firstName;
+        this.secondName = secondName;
 
     }
 
-    public String getFullName() {
-        return fullName;
-    }
 
     @Override
     public String toString() {
-        return "ФИО: " + fullName;
+        return "ФИО: " + firstName + " " + secondName;
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Employee)) return false;
+        Employee employee = (Employee) o;
+        return Objects.equals(getFirstName(), employee.getFirstName()) && Objects.equals(getSecondName(), employee.getSecondName());
     }
 }
 
