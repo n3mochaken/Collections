@@ -1,5 +1,4 @@
 package com.skypro.Collections.domain;
-
 import java.util.Objects;
 
 public class Employee {

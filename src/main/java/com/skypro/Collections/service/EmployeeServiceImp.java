@@ -24,8 +24,10 @@ public class EmployeeServiceImp implements EmployeeService {
 
 
     @Override
-    public void addEmployee(String firstName, String secondName) throws EmployeeAlreadyAddedException, EmployeeStorageFullException {
+    public Employee addEmployee(String firstName, String secondName) throws EmployeeAlreadyAddedException, EmployeeStorageFullException {
         Employee employee = new Employee(firstName, secondName);
+
+
         if (employees.size() == maxEmployees) {
             throw new EmployeeStorageFullException("NET MESTA UHODI");
         }
@@ -33,32 +35,33 @@ public class EmployeeServiceImp implements EmployeeService {
             throw new EmployeeAlreadyAddedException("UJE DOBAVLEN");
         }
         employees.add(employee);
+        return employee;
 
     }
 
     @Override
-    public String deleteEmployee(String firstName, String secondName) {
-        Employee employee = new Employee(firstName, secondName);
-        if (!employees.contains(employee)) {
-            throw new EmployeeNotFoundException("TAKOGO NET UDALAT NE BUDU");
+    public Employee deleteEmployee(String name, String lastName) throws EmployeeNotFoundException {
 
+        Employee employee = new Employee(name, lastName);
+
+        if (employees.contains(employee)) {
+            employees.remove(employee);
+            return employee;
         }
-        employees.remove(employee);
-        return "UDALEN" + firstName + " " + secondName;
+        throw new EmployeeNotFoundException("NET TAKOGO EWE");
+
     }
 
+
     @Override
-    public String findEmployee(String firstName, String secondName) throws EmployeeNotFoundException {
+    public Employee findEmployee(String firstName, String secondName) throws EmployeeNotFoundException {
         Employee employee = new Employee(firstName, secondName);
-        if (!employees.contains(employee)) {
-            throw new EmployeeNotFoundException("NET TAKOGO EWE");
+        if (employees.contains(employee)) {
+            return employee;
         }
-        for (Employee employee1 : employees) {
-            if (employee.equals(employee1)) {
-                return " RABOTNIK " + firstName + " " + secondName + " NAIDEN";
-            }
-        }
-        return "Opat ne nashel" + firstName + " " + secondName;
+        throw new EmployeeNotFoundException("NET TAKOGO EWE");
+
+
     }
 
 

@@ -1,6 +1,7 @@
 package com.skypro.Collections.controller;
 
 
+import com.skypro.Collections.domain.Employee;
 import com.skypro.Collections.service.EmployeeService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,24 +19,22 @@ public class EmployeeController {
     }
 
     @GetMapping("/add")
-    public String addEmployee(@RequestParam("name") String firstName,
-                              @RequestParam("surname") String secondName
+    public Employee addEmployee(@RequestParam("name") String firstName,
+                                @RequestParam("surname") String secondName
     ) {
-
-        employeeService.addEmployee(firstName, secondName);
-        return "employeeAdded";
+        return employeeService.addEmployee(firstName, secondName);
     }
 
     @GetMapping("/find")
-    public String findEmployee(@RequestParam("name") String firstName,
-                               @RequestParam("surname") String secondName
+    public Employee findEmployee(@RequestParam("name") String firstName,
+                                 @RequestParam("surname") String secondName
     ) {
         return employeeService.findEmployee(firstName, secondName);
     }
 
     @GetMapping("/delete")
-    public String deleteEmployee(@RequestParam("name") String firstName,
-                                 @RequestParam("surname") String secondName
+    public Employee deleteEmployee(@RequestParam("name") String firstName,
+                                   @RequestParam("surname") String secondName
     ) {
         return employeeService.deleteEmployee(firstName, secondName);
     }

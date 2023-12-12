@@ -1,14 +1,19 @@
 package com.skypro.Collections.service;
 
 
+import com.skypro.Collections.Exeptions.EmployeeAlreadyAddedException;
+import com.skypro.Collections.Exeptions.EmployeeNotFoundException;
+import com.skypro.Collections.Exeptions.EmployeeStorageFullException;
+import com.skypro.Collections.domain.Employee;
+
 public interface EmployeeService {
 
 
-    void addEmployee(String firstName, String secondName);
+    Employee addEmployee(String firstName, String secondName)throws EmployeeStorageFullException, EmployeeAlreadyAddedException;
 
-    String deleteEmployee(String firstName, String secondName);
+    Employee deleteEmployee(String firstName, String secondName)throws EmployeeNotFoundException;
 
 
-    String findEmployee(String firstName, String secondName);
+    Employee findEmployee(String firstName, String secondName)throws EmployeeNotFoundException;
 
 }
