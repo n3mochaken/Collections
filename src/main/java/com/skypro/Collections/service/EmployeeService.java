@@ -9,11 +9,11 @@ import com.skypro.Collections.domain.Employee;
 public interface EmployeeService {
 
 
-    Employee addEmployee(String firstName, String secondName)throws EmployeeStorageFullException, EmployeeAlreadyAddedException;
+    Employee addEmployee(String firstName, String secondName) throws EmployeeStorageFullException, EmployeeAlreadyAddedException;
 
-    Employee deleteEmployee(String firstName, String secondName)throws EmployeeNotFoundException;
+    Employee deleteEmployee(String firstName, String secondName) throws EmployeeNotFoundException;
 
 
-    Employee findEmployee(String firstName, String secondName)throws EmployeeNotFoundException;
+    Employee findEmployee(String firstName, String secondName) throws EmployeeNotFoundException;
 
 }
