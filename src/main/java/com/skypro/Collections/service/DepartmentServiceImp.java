@@ -25,9 +25,7 @@ public class DepartmentServiceImp implements DepartmentService {
 
     @Override
     public Employee findEmployeeWithMaxSalary(int departmentId) {
-        return employeeService
-                .findAll()
-                .stream()
+        return employeeService.findAll().stream()
                 .filter(e -> e.getDepartmentId() == departmentId)
                 .max(Comparator.comparingInt(Employee::getSalary))
                 .orElseThrow();

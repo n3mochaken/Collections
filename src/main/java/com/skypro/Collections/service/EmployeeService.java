@@ -14,7 +14,7 @@ public interface EmployeeService {
 
     Employee addEmployee(String firstName, String secondName, int salary, int department) throws EmployeeStorageFullException, EmployeeAlreadyAddedException;
 
-    Employee deleteEmployee(String firstName, String secondName , int salary, int department) throws EmployeeNotFoundException;
+    Employee deleteEmployee(String firstName, String secondName, int salary, int department) throws EmployeeNotFoundException;
 
 
     Employee findEmployee(String firstName, String secondName, int salary, int department) throws EmployeeNotFoundException;

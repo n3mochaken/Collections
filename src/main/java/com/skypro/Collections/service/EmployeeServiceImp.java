@@ -42,7 +42,7 @@ public class EmployeeServiceImp implements EmployeeService {
     @Override
     public Employee deleteEmployee(String firstName, String secondName, int salary, int department) throws EmployeeNotFoundException {
         Employee employee = new Employee(firstName, secondName, salary, department);
-        if (employees.containsValue(employee.getFullName())) {
+        if (employees.containsValue(employee)) {
             employees.remove(employee.getFullName());
         }
         return employee;

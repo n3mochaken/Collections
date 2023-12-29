@@ -4,6 +4,13 @@ import java.util.Objects;
 
 public class Employee {
 
+
+    private String firstName;
+    private String secondName;
+    private int departmentId;
+    private int salary;
+    private String fullName;
+
     public String getFirstName() {
         return firstName;
     }
@@ -24,18 +31,10 @@ public class Employee {
         return salary;
     }
 
-    private String firstName;
-    private String secondName;
-    private int departmentId;
-    private int salary;
-
-
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
-
-    private String fullName;
 
 
     public Employee(String firstName, String secondName, int salary, int department) {
