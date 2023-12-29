@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collection;
+import java.util.Collections;
+
 @RestController
 @RequestMapping("/Employee")
 public class EmployeeController {
@@ -20,24 +23,33 @@ public class EmployeeController {
 
     @GetMapping("/add")
     public Employee addEmployee(@RequestParam("name") String firstName,
-                                @RequestParam("surname") String secondName
+                                @RequestParam("surname") String secondName,
+                                @RequestParam("salary") int salary,
+                                @RequestParam("department") int department
     ) {
-        return employeeService.addEmployee(firstName, secondName);
+        return employeeService.addEmployee(firstName, secondName, salary, department);
     }
 
     @GetMapping("/find")
     public Employee findEmployee(@RequestParam("name") String firstName,
-                                 @RequestParam("surname") String secondName
+                                 @RequestParam("surname") String secondName,
+                                 @RequestParam("salary") int salary,
+                                 @RequestParam("department") int department
     ) {
-        return employeeService.findEmployee(firstName, secondName);
+        return employeeService.findEmployee(firstName, secondName,salary,department);
     }
 
     @GetMapping("/delete")
     public Employee deleteEmployee(@RequestParam("name") String firstName,
-                                   @RequestParam("surname") String secondName
+                                   @RequestParam("surname") String secondName,
+                                   @RequestParam("salary") int salary,
+                                   @RequestParam("department") int department
     ) {
-        return employeeService.deleteEmployee(firstName, secondName);
+        return employeeService.deleteEmployee(firstName, secondName,salary,department);
     }
+
+    @GetMapping("/list")
+    public Collection<Employee> findAll(){return employeeService.findAll();}
 
 
 }

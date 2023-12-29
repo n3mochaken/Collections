@@ -6,10 +6,7 @@ import com.skypro.Collections.Exeptions.EmployeeStorageFullException;
 import com.skypro.Collections.domain.Employee;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 
@@ -19,16 +16,21 @@ public class EmployeeServiceImp implements EmployeeService {
     private final Map<String, Employee> employees = new HashMap<>(Map.of(
             "ivan ivanov",
             new Employee(
-                    "ivan", "ivanov"),
+                    "ivan", "ivanov", 1000, 1),
             "petr petrov",
             new Employee(
-                    "petr", "petrov")
+                    "petr", "petrov", 1000, 2),
+            "dima dimin",
+            new Employee("dima", "dimin", 1500, 3),
+            "nikita nikitin",
+            new Employee("nikita", "nikitin", 2000, 1)
+
     ));
 
 
     @Override
-    public Employee addEmployee(String firstName, String secondName) throws EmployeeAlreadyAddedException, EmployeeStorageFullException {
-        Employee employee = new Employee(firstName, secondName);
+    public Employee addEmployee(String firstName, String secondName, int salary, int department) throws EmployeeAlreadyAddedException, EmployeeStorageFullException {
+        Employee employee = new Employee(firstName, secondName, salary, department);
         if (employees.containsKey(employee.getFullName())) {
             throw new EmployeeAlreadyAddedException("TAKOY EST");
         }
@@ -38,10 +40,10 @@ public class EmployeeServiceImp implements EmployeeService {
     }
 
     @Override
-    public Employee deleteEmployee(String firstName, String secondName) throws EmployeeNotFoundException {
-        Employee employee = new Employee(firstName, secondName);
+    public Employee deleteEmployee(String firstName, String secondName, int salary, int department) throws EmployeeNotFoundException {
+        Employee employee = new Employee(firstName, secondName, salary, department);
         if (employees.containsValue(employee.getFullName())) {
-            employees.remove(employee.getFullName(), employee);
+            employees.remove(employee.getFullName());
         }
         return employee;
 
@@ -49,14 +51,19 @@ public class EmployeeServiceImp implements EmployeeService {
 
 
     @Override
-    public Employee findEmployee(String firstName, String secondName) throws EmployeeNotFoundException {
-        Employee employee = new Employee(firstName, secondName);
+    public Employee findEmployee(String firstName, String secondName, int salary, int department) throws EmployeeNotFoundException {
+        Employee employee = new Employee(firstName, secondName, salary, department);
         if (!employees.containsKey(employee.getFullName())) {
             throw new EmployeeNotFoundException("NET TAKOGO EWE");
         }
         return employee;
 
 
+    }
+
+    @Override
+    public Collection<Employee> findAll() {
+        return Collections.unmodifiableCollection((employees.values()));
     }
 
 
